@@ -193,8 +193,9 @@ fruit
 
 ```{r}
 library(reticulate)
-py_install("numpy")
+py_config()
 py_install("pandas")
+py_install("numpy")
 ```
 
 ```{python}
@@ -224,7 +225,7 @@ khora = (1, 5, 12)
 
 type(khora)
 
-khora[1] = 16 # Nope
+#khora[1] = 16 # Nope
 ```
 
 A more involved list (note: you can also use list() to create lists in python)
@@ -314,7 +315,7 @@ Negative integers
 x[-c(3, 1)]
 
 # Can't mix positive and negative
-x[c(-1,2)]
+#x[c(-1,2)]
 ```
 Logical vectors
 ```{r}
@@ -339,7 +340,7 @@ x
 x[-1] <- 4:1
 x
 
-x[c(1, NA)] <- c(1, 2)
+#x[c(1, NA)] <- c(1, 2)
 
 x[c(T, F, NA)] <- 1
 x
@@ -353,4 +354,18 @@ df$a
 mtcars[mtcars$gear == 5, ]
 
 mtcars[mtcars$gear == 5 & mtcars$cyl ==4, ]
+
+subset(mtcars, gear == 5)
+
+subset(mtcars, gear == 5 & cyl == 4)
+```
+## Removing columns from data frames (Character subsetting)
+
+```{r}
+df <- data.frame(x = 1:3, y = 3:1, z = letters[1:3])
+df$z <- NULL
+df
+
+df <- data.frame(x = 1:3, y = 3:1, z = letters[1:3])
+df[c("x", "y")]
 ```
